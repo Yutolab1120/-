@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+    "log" 
+    "net/http"
+)
 
 func main() {
-	fmt.Println("hello,world!")
+
+    fs := http.FileServer(http.Dir("public"))
+    http.Handle("/", fs)
+
+    log.Println("Listening to Port3000...")
+
+    http.ListenAndServe(":3000", nil)
+
 }
